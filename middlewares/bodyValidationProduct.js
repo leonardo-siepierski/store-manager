@@ -19,11 +19,11 @@ const quantityValidation = (req, res, next) => {
   try {
     const { quantity } = req.body;
 
-  if (!quantity || quantity === undefined) {
+  if (!quantity && typeof quantity !== 'number') {
     return res.status(400).json({ message: '"quantity" is required' });
   }
 
-  if (parseInt(10, quantity) <= 0) {
+  if (quantity < 1) {
     return res.status(422).json({ message: '"quantity" must be greater than or equal to 1' });
   }
 
