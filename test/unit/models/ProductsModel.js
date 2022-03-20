@@ -88,4 +88,19 @@ describe('PRODUCTS MODEL', () => {
       });
     });
   });
+
+  describe('Delete', () => {
+    before(() => {
+      sinon.stub(connection, 'execute').resolves();
+    });
+
+    after(() => {
+      connection.execute.restore();
+    });
+
+    it('Deve chamar connection.execute', async () => {
+      await model.deleteProduct();
+      expect(connection.execute.called).to.be.equal(true);
+    })
+  });
 });

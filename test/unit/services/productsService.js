@@ -30,4 +30,19 @@ describe('PRODUCTS SERVICE', () => {
       expect(result).to.have.property('id');
     });
   });
+
+  describe('GetAll', () => {
+    before(() => {
+      sinon.stub(model, 'getAll').resolves([]);
+    });
+
+    after(() => {
+      model.getAll.restore();
+    });
+
+    it('Retorna um array de objetos', async () => {
+      const products = await service.getAll();
+      expect(products).to.be.an('array');
+    })
+  });
 });

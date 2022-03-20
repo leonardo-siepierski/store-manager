@@ -85,4 +85,19 @@ describe('SALES MODEL', () => {
       expect(connection.execute.called).to.be.equal(true);
     });
   });
+
+  describe('Update', () => {
+    before(() => {
+      sinon.stub(connection, 'execute').resolves();
+    });
+
+    after(() => {
+      connection.execute.restore();
+    })
+
+    it('Chama connection.execute', async () => {
+      await model.update();
+      expect(connection.execute.called).to.be.equal(true);
+    });
+  });
 }); 

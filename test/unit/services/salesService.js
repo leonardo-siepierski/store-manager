@@ -87,4 +87,19 @@ describe('SALES SERVICE', () => {
       expect(model.deleteSale.called).to.be.equal(true);
     });
   });
+
+  describe('Update', () => {
+    before(() => {
+      sinon.stub(model, 'update').resolves();
+    });
+
+    after(() => {
+      model.update.restore();
+    });
+
+    it('Chama model.update', async () => {
+      await service.update();
+      expect(model.update.called).to.be.equal(true);
+    });
+  });
 }); 
