@@ -2,6 +2,7 @@ const express = require('express');
 
 const { getAll, getById, create, update, deleteSale } = require('../controllers/salesController');
 const { idValidation, quantityValidation } = require('../middlewares/bodyValidationSale');
+const { deletedSale, createdSale } = require('../middlewares/updateQuantity');
 
 const router = express.Router();
 
@@ -11,6 +12,7 @@ router.post(
   '/',
   idValidation,
   quantityValidation,
+  createdSale,
   create,
 );
 router.put(
@@ -19,6 +21,6 @@ router.put(
   quantityValidation,
   update,
 );
-router.delete('/:id', deleteSale);
+router.delete('/:id', deletedSale, deleteSale);
 
 module.exports = router;
